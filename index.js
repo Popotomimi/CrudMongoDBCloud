@@ -1,6 +1,8 @@
 // config inicial
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
+
 const app = express();
 
 // Forma de ler JSON / middlewares
@@ -8,9 +10,11 @@ app.use(
     express.urlencoded({
         extended: true,
     }),
-)
+);
 
 app.use(express.json());
+
+app.use(cors());
 
 // Rotas da API
 const personRoutes = require("./routes/personRoutes");
@@ -27,7 +31,7 @@ app.get('/', (req, res) => {
 mongoose.connect('mongodb+srv://popotomimi:popoto100200300@apicluster.tierms1.mongodb.net/?retryWrites=true&w=majority&appName=APIcLUSTER')
 .then(() => {
     console.log("Conectamos ao mongoDB!");
-    app.listen(3000);
+    app.listen(8800);
 })
 .catch((err) => console.log(err));
 
